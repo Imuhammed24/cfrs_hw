@@ -1,0 +1,10 @@
+This file is for Lecture 11. We will learn how to handle files using Python. 
+We will open in read and write modes in both standard and binary forms. 
+We also will test how often certain occurrences happen in a file. 
+We will figure out how many times a word is used from Python and hope we get our test code right.
+We will have fun playing with Python and we will be especially happy when we have mastered the language.
+
+If our code is correct it will say we have encountered:
+‘we’ - 10 times, (including this one)
+‘Python’ -  4 times
+‘file’ -  4 times, three times singular and one time plural
