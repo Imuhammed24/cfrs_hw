@@ -47,7 +47,7 @@ def main(content):
     decoded_messages = {}
     all_images_timestamps = {}
     images_ascii_representation = {}
-    md5_hashes_of_image = {}
+    final_image_details = {}
 
     # traverse the directory entered
     for current_directory, child_directories, child_files in os.walk(directory_name):
@@ -102,10 +102,10 @@ def main(content):
                 }
 
                 # save image ascii characters
-                if image_has_appended_data:
-                    images_ascii_representation[child_file.split('.')[0]] = current_image_ascii_lines[:-1]
-                else:
-                    images_ascii_representation[child_file.split('.')[0]] = current_image_ascii_lines
+                # if image_has_appended_data:
+                #     images_ascii_representation[child_file.split('.')[0]] = current_image_ascii_lines[:-1]
+                # else:
+                #     images_ascii_representation[child_file.split('.')[0]] = current_image_ascii_lines
 
                 # create image with
                 with open(current_image_path, "rb") as file:
@@ -118,7 +118,18 @@ def main(content):
                             new_file.writelines([line for line in file.readlines()])
 
                 # get md5 hashes of images
-                md5_hashes_of_image[child_file.split('.')[0]] = md5_hash_func(current_image_path)
+                # new_file_created_time = time.ctime(os.path.getctime(f"{child_file.split('.')[0]}.jpg"))
+                # new_file_last_modified = time.ctime(os.path.getmtime(f"{child_file.split('.')[0]}.jpg"))
+                # new_file_last_accessed = time.ctime(os.path.getatime(f"{child_file.split('.')[0]}.jpg"))
+                final_image_details[child_file.split('.')[0]] = {
+                    'filename': f"{child_file.split('.')[0]}.jpg",
+                    'hash': md5_hash_func(current_image_path),
+                    'timestamps': {
+                        'created': time.ctime(os.path.getctime(f"{child_file.split('.')[0]}.jpg")),
+                        'last_modified': time.ctime(os.path.getmtime(f"{child_file.split('.')[0]}.jpg")),
+                        'last_accessed': time.ctime(os.path.getatime(f"{child_file.split('.')[0]}.jpg")),
+                    }
+                }
 
     # get messages
     for encoded_message in cleaned_images_trailer.keys():
@@ -126,76 +137,22 @@ def main(content):
         decoded_message = b64decode(base64_message)
         decoded_messages[encoded_message] = decoded_message
 
-    print(md5_hashes_of_image)
+        # update final table with message plaintext
+        final_image_details[encoded_message]['plaintext message'] = decoded_message.decode('ascii')
+        final_image_details[encoded_message]['base64 encoded message'] = base64_message
 
-    # get the modulus4
-    # for test_string in strings_to_test_for_length:
-    #     if len(test_string) >= 4:
-    #         if len(test_string) % 4 != 0:
-    #             slice list from begining with remainder
-    #             strings_to_test_for_base64.append(test_string[len(test_string) % 4:])
-    # elif len(test_string) % 4 != 0:
-    #     strings_to_test_for_base64.append(test_string)
-
-    # check if is a base64
-    # if yes, decrypt and save
-
-    # base64_string = base64.b64decode(byte_string)
-    # reversed_string = base64_string.decode('ascii').encode('ascii')
-
-    # print(byte_string, reversed_string)
-    # print(strings_to_test_for_base64)
-    # for base_64_test_string in strings_to_test_for_base64:
-    #     byte_string = base_64_test_string.encode('ascii')
-    # try:
-    #     if str(base64.b64encode(base64.b64decode(byte_string)).decode('ascii')) == base_64_test_string:
-    #         print(str(base64.b64encode(base64.b64decode(byte_string))), base_64_test_string)
-    #     else:
-    #         continue
-    # except:
-    #     continue
-
-    # try:
-    #     base64.b64decode(byte_string)
-    #     print('decoded ', base_64_test_string)
-    # except binascii.Error:
-    #     pass
-
-    # file1.writelines(sting)
-    # image = open(f'child_file.txt', 'a')
-    # image.writelines(f'\n\n{sting}')
-    # file1.close()
-    # print(strings_to_test_for_length)
-
-    # DECODING FILES
-    # image = open(f"{child_file.split('.')[0]}.txt", 'rb')
-    # image_read = image.read()
-    # print(image_read)
-    # fresh_decoded = image_read.decode('latin1')
-    # decoded = base64.b64decode(image_read)
-    # image_result = open(f"{child_file.split('.')[0]}_decode.txt", 'wb')  # create a writable image and write the decoding result
-    # image_result.write(decoded)
-    # print(str(decoded))
-
-    # print("Created: %s" % time.ctime(os.path.getctime(os.path.join(current_directory, child_file))))
-    # print("Last Modified: %s" % time.ctime(os.path.getmtime(os.path.join(current_directory, child_file))))
-    # print("Last Accessed: %s" % time.ctime(os.path.getatime(os.path.join(current_directory, child_file))))
-
-    # img.close()
-    # print(strings_to_test_for_base64)
-    # try:
-    #     base64.b64decode(byte_string)
-    #     print('decoded ', base_64_test_string)
-    # except binascii.Error:
-    #     pass
-    return
+    # output file
+    with open('output/output.txt', "w") as output_file:
+        for record in final_image_details.keys():
+            for detail in final_image_details[record].keys():
+                try:
+                    output_file.writelines([detail, ': ', final_image_details[record][detail], '\n'])
+                except TypeError:
+                    for sub_detail in final_image_details[record][detail].keys():
+                        output_file.writelines([sub_detail, ': ', final_image_details[record][detail][sub_detail], '\n'])
+                    pass
+            output_file.writelines('\n\n')
 
 
 if __name__ == '__main__':
     main('PyCharm')
-
-# find ascii equiv: strings jpg01
-# identify base64
-# strings
-# echo 'RGVzaWduZWRieUZyZWVwaWs=' | base64 -d
-# sys allows to run sytem command
