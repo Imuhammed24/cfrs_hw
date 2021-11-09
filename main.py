@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import os
 import string
 from hashlib import md5
@@ -30,9 +31,12 @@ def b64decode(encoded_message):
     return _decoded_message
 
 
-def md5_hash_func(content):
-    return
-    # print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def md5_hash_func(image_directory):
+    with open(image_directory, "rb") as image_file:
+        # read file as bytes
+        image_in_bytes = image_file.read()
+        readable_hash = hashlib.md5(image_in_bytes).hexdigest()
+    return readable_hash
 
 
 def main(content):
@@ -43,6 +47,7 @@ def main(content):
     decoded_messages = {}
     all_images_timestamps = {}
     images_ascii_representation = {}
+    md5_hashes_of_image = {}
 
     # traverse the directory entered
     for current_directory, child_directories, child_files in os.walk(directory_name):
@@ -112,13 +117,16 @@ def main(content):
                         else:
                             new_file.writelines([line for line in file.readlines()])
 
+                # get md5 hashes of images
+                md5_hashes_of_image[child_file.split('.')[0]] = md5_hash_func(current_image_path)
+
     # get messages
     for encoded_message in cleaned_images_trailer.keys():
         base64_message = cleaned_images_trailer.get(encoded_message)
         decoded_message = b64decode(base64_message)
         decoded_messages[encoded_message] = decoded_message
 
-    print(all_images_timestamps)
+    print(md5_hashes_of_image)
 
     # get the modulus4
     # for test_string in strings_to_test_for_length:
