@@ -1,4 +1,5 @@
 import base64
+import binascii
 import os
 import string
 from hashlib import md5
@@ -90,20 +91,82 @@ def main(content):
                 file1 = open(f"{child_file.split('.')[0]}.txt", "a")
 
                 current_image_path = os.path.join(current_directory, child_file)
+                # print('..................................................................................................')
                 print(child_file)
                 for sting in strings(current_image_path):
+                    # get sting
+                    # check length
+                    current_string_valid = None
+                    strings_to_test_for_length = []
+                    strings_to_test_for_base64 = []
+                    tested_strings_and_plain_text = []
+                    allowed_chars = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O',
+                               'P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d',
+                               'e','f','g','h','i','j','k','l','m','n','o','p','q','r','s',
+                               't','u','v','w','x','y','z','/','=', '+', '0', '1', '2', '3',
+                               '4', '5', '6', '7', '8', '9']
+                    for character in str(sting):
+                        if character not in allowed_chars:
+                            current_string_valid = False
+                            break
+                        else:
+                            current_string_valid = True
+
+                    if current_string_valid is True:
+                        strings_to_test_for_length.append(sting)
+
+
+                    # get the modulus4
+                    for test_string in strings_to_test_for_length:
+                        if len(test_string) >= 4:
+                            if len(test_string) % 4 != 0:
+                                # slice list from begining with remainder
+                                strings_to_test_for_base64.append(test_string[len(test_string) % 4:])
+                            elif len(test_string) % 4 != 0:
+                                strings_to_test_for_base64.append(test_string)
+
+
+                    # check if is a base64
+                    # if yes, decrypt and save
+
+                    # base64_string = base64.b64decode(byte_string)
+                    # reversed_string = base64_string.decode('ascii').encode('ascii')
+
+                    # print(byte_string, reversed_string)
+                    # print(strings_to_test_for_base64)
+                    # for base_64_test_string in strings_to_test_for_base64:
+                    #     byte_string = base_64_test_string.encode('ascii')
+                        # try:
+                        #     if str(base64.b64encode(base64.b64decode(byte_string)).decode('ascii')) == base_64_test_string:
+                        #         print(str(base64.b64encode(base64.b64decode(byte_string))), base_64_test_string)
+                        #     else:
+                        #         continue
+                        # except:
+                        #     continue
+
+                        # try:
+                        #     base64.b64decode(byte_string)
+                        #     print('decoded ', base_64_test_string)
+                        # except binascii.Error:
+                        #     pass
+
+
+
                     file1.writelines(sting)
+                    # image = open(f'child_file.txt', 'a')
+                    # image.writelines(f'\n\n{sting}')
                 file1.close()
 
 
                 # DECODING FILES
-                image = open(f"{child_file.split('.')[0]}.txt", 'r')
-                image_read = image.read()
+                # image = open(f"{child_file.split('.')[0]}.txt", 'rb')
+                # image_read = image.read()
                 # print(image_read)
-                fresh_decoded = image_read.encode('ascii')
-                decoded = base64.b64decode(image_read)
-                image_result = open(f"{child_file.split('.')[0]}_decode.txt", 'w')  # create a writable image and write the decoding result
-                image_result.write(decoded.decode('iso8859_2'))
+                # fresh_decoded = image_read.decode('latin1')
+                # decoded = base64.b64decode(image_read)
+                # image_result = open(f"{child_file.split('.')[0]}_decode.txt", 'wb')  # create a writable image and write the decoding result
+                # image_result.write(decoded)
+                # print(str(decoded))
 
 
                 # print("Created: %s" % time.ctime(os.path.getctime(os.path.join(current_directory, child_file))))
@@ -111,6 +174,13 @@ def main(content):
                 # print("Last Accessed: %s" % time.ctime(os.path.getatime(os.path.join(current_directory, child_file))))
 
                 img.close()
+                # print(strings_to_test_for_base64)
+                # try:
+                #     base64.b64decode(byte_string)
+                #     print('decoded ', base_64_test_string)
+                # except binascii.Error:
+                #     pass
+
     return
 
 
