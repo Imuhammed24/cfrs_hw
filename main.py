@@ -1,3 +1,4 @@
+import base64
 import os
 import string
 from hashlib import md5
@@ -94,7 +95,18 @@ def main(content):
                     file1.writelines(sting)
                 file1.close()
 
-                print("Created: %s" % time.ctime(os.path.getctime(os.path.join(current_directory, child_file))))
+
+                # DECODING FILES
+                image = open(f"{child_file.split('.')[0]}.txt", 'r')
+                image_read = image.read()
+                # print(image_read)
+                fresh_decoded = image_read.encode('ascii')
+                decoded = base64.b64decode(image_read)
+                image_result = open(f"{child_file.split('.')[0]}_decode.txt", 'w')  # create a writable image and write the decoding result
+                image_result.write(decoded.decode('iso8859_2'))
+
+
+                # print("Created: %s" % time.ctime(os.path.getctime(os.path.join(current_directory, child_file))))
                 # print("Last Modified: %s" % time.ctime(os.path.getmtime(os.path.join(current_directory, child_file))))
                 # print("Last Accessed: %s" % time.ctime(os.path.getatime(os.path.join(current_directory, child_file))))
 
