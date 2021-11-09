@@ -1,0 +1,58 @@
+filename: file03.jpg
+hash: 59d361e491a16b10ee641086d5b42568
+timestamps: created: Wed Nov 10 00:10:44 2021
+last_modified: Wed Nov 10 00:10:44 2021
+last_accessed: Wed Nov 10 00:10:43 2021
+plaintext message: DesignedbyFreepik
+base64 encoded message: RGVzaWduZWRieUZyZWVwaWs=
+
+
+
+filename: pdf01.jpg
+hash: a345148205f11133376a51046696335d
+timestamps: created: Wed Nov 10 00:10:45 2021
+last_modified: Wed Nov 10 00:10:45 2021
+last_accessed: Wed Nov 10 00:10:44 2021
+plaintext message: JPEG with hidden content
+base64 encoded message: SlBFRyB3aXRoIGhpZGRlbiBjb250ZW50
+
+
+
+filename: jpg02.jpg
+hash: ab4d76e477a2252779c4b74909a3d9e7
+timestamps: created: Wed Nov 10 00:10:44 2021
+last_modified: Wed Nov 10 00:10:44 2021
+last_accessed: Wed Nov 10 00:10:44 2021
+
+
+
+filename: jpg01.jpg
+hash: f9380ff29255cb45044498f536f499ff
+timestamps: created: Wed Nov 10 00:10:44 2021
+last_modified: Wed Nov 10 00:10:44 2021
+last_accessed: Wed Nov 10 00:10:44 2021
+plaintext message: DesignedbyFreepik
+base64 encoded message: RGVzaWduZWRieUZyZWVwaWs=
+
+
+
+filename: file02.jpg
+hash: 7f2be3e1b6a9b396736369a18bbd61ff
+timestamps: created: Wed Nov 10 00:10:44 2021
+last_modified: Wed Nov 10 00:10:44 2021
+last_accessed: Wed Nov 10 00:10:44 2021
+plaintext message: Another JPEG with hidden content
+base64 encoded message: QW5vdGhlciBKUEVHIHdpdGggaGlkZGVuIGNvbnRlbnQ=
+
+
+
+filename: jpg05.jpg
+hash: 59d361e491a16b10ee641086d5b42568
+timestamps: created: Wed Nov 10 00:10:44 2021
+last_modified: Wed Nov 10 00:10:44 2021
+last_accessed: Wed Nov 10 00:10:44 2021
+plaintext message: DesignedbyFreepik
+base64 encoded message: RGVzaWduZWRieUZyZWVwaWs=
+
+
+
