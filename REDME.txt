@@ -1,0 +1,2 @@
+README.txt – should explain how program is to be executed, any special
+requirements (e.g. 3 rd party libraries), and the author (your name) of the script

@@ -140,7 +140,7 @@ def main(content):
                     final_image_details[child_file.split('.')[0]] = {
                         'old filename': child_file,
                         'new filename': f"{child_file.split('.')[0]}.jpg",
-                        'hash': sha256_hash_func(os.path.join(os.getcwd(), f"CleanedImages/{child_file.split('.')[0]}.jpg")),
+                        'file md5 hash': sha256_hash_func(os.path.join(os.getcwd(), f"CleanedImages/{child_file.split('.')[0]}.jpg")),
                         'timestamps': {
                             'created': new_file_created_time,
                             'last_modified': new_file_last_modified,
@@ -157,8 +157,8 @@ def main(content):
             decoded_messages[image_name] = decoded_message
 
             # update final table with encoded attachment plaintext
-            final_image_details[image_name]['plaintext message'] = decoded_message
-            final_image_details[image_name]['base64 encoded data'] = base64_message
+            final_image_details[image_name]['decoded appended data'] = decoded_message
+            final_image_details[image_name]['encoded appended data'] = base64_message
 
         # write required information to output file
         with open('BalogunOutput.txt', "w") as output_file:
