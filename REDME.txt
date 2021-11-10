@@ -1,2 +1,21 @@
 README.txt – should explain how program is to be executed, any special
 requirements (e.g. 3 rd party libraries), and the author (your name) of the script
+........................................................................................
+
+
+- Program is written using python 3.8
+
+REQUIREMENTS
+- Install python 3.8
+
+HOW TO RUN
+- To run on Linux, use command: "python3 hw3Balogun.py"
+- To run on Windows, use command: "python hw3Balogun.py"
+
+ONCE PROGRAM RUNS
+- Enter the directory path (root directory) to investigate
+- Then wait for result
+
+WHERE TO FIND OUTPUT?
+- After running the code, output will be in the same directory as the code
+
