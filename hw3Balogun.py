@@ -174,7 +174,7 @@ def main(content):
                 output_file.writelines('\n\n')
 
         # print to console
-        print('Output file Path: ', os.getcwd())  # path to output file
+        print('Output file Path: ', os.path.join(os.getcwd(), 'BalogunOutput.txt'))  # path to output file
         print('Completion time: ', datetime.datetime.now() - startTime)  # time script completes execution
     else:
         # if directory is not found
