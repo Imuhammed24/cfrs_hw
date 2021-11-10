@@ -1,5 +1,5 @@
-README.txt – should explain how program is to be executed, any special
-requirements (e.g. 3 rd party libraries), and the author (your name) of the script
+AUTHOR
+Balogun Abayomi
 ........................................................................................
 
 
@@ -7,9 +7,11 @@ requirements (e.g. 3 rd party libraries), and the author (your name) of the scri
 
 REQUIREMENTS
 - Install python 3.8
-- Install pillow using Python pip: 'pip install pillow'
+- Install pillow using Python pip on command shell: 'pip install pillow'
 
 HOW TO RUN
+- Open command shell
+- Navigate to the folder where 'hw3Balogun.py' is stored
 - To run on Linux, use command: "python3 hw3Balogun.py"
 - To run on Windows, use command: "python hw3Balogun.py"
 
