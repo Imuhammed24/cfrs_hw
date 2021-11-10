@@ -41,9 +41,9 @@ def sha256_hash_func(image_directory):
     return readable_hash
 
 
-def main(content):
+def main():
     # user enters directory
-    directory_name = input('Please enter directory (C:/Users/sselt/Documents/blog_demo): ')
+    directory_name = input('Please enter directory (C:/Users/pictures/Documents/blog_demo): ')
     if os.path.exists(directory_name):
         cleaned_images_trailer = {}
         decoded_messages = {}
@@ -182,4 +182,4 @@ def main(content):
 
 
 if __name__ == '__main__':
-    main('PyCharm')
+    main()
